@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Weather.css";
 
 export default function Weather(props) {
   const [location, setLocation] = useState(props.defaultCity);
@@ -36,7 +37,7 @@ export default function Weather(props) {
 
   if (ready) {
     return (
-      <>
+      <div className="Weather">
         <form className="search" onSubmit={handleSubmit}>
           <input
             value={location}
@@ -64,7 +65,9 @@ export default function Weather(props) {
                 <img src={weather.icon} alt={weather.description} />
               </div>
               <p className="details">
-                <span className="description">{weather.description}</span>
+                <span className="description text-capitalize">
+                  {weather.description}
+                </span>
                 <br />
                 <span className="humidity">
                   Humidity: {weather.humidity}%,{" "}
@@ -75,7 +78,7 @@ export default function Weather(props) {
           </div>
           <div className="bottom"></div>
         </div>
-      </>
+      </div>
     );
   } else {
     search();
