@@ -22,9 +22,18 @@ p {
 }
 
 .temp .unit {
-  font-size: 28px;
+  font-size: 1.6rem;
   position: relative;
-  top: -35px;
+  top: -38px;
+  font-weight: 400;
+}
+
+.temp .unit a {
+  /* font-size: 1.5rem; */
+  text-decoration: none;
+  /* color: rgba(255, 255, 255, 0.75); */
+  color: #fff;
+  text-shadow: none;
 }
 
 .Weather .search {
