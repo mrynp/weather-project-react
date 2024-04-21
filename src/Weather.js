@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import FormattedDate from "./FormattedDate";
 
 export default function Weather(props) {
   const [location, setLocation] = useState(props.defaultCity);
-  const [weather, setWeather] = useState({});
-  const [ready, setReady] = useState(false);
+  const [weather, setWeather] = useState({ ready: false });
 
   function displayWeather(response) {
     console.log(response.data.name);
     setWeather({
+      ready: true,
       name: response.data.name,
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
+      date: new Date(response.data.dt * 1000),
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       description: response.data.weather[0].description,
     });
-    setReady(true);
+
+    // console.log(weather.time);
   }
 
   function handleSubmit(event) {
@@ -35,7 +38,7 @@ export default function Weather(props) {
     axios.get(url).then(displayWeather);
   }
 
-  if (ready) {
+  if (weather.ready) {
     return (
       <div className="Weather">
         <form className="search" onSubmit={handleSubmit}>
@@ -58,6 +61,9 @@ export default function Weather(props) {
                   {weather.temperature}
                   <span className="unit">°C</span>
                 </p>
+              </div>
+              <div className="time">
+                <FormattedDate date={weather.date} />
               </div>
             </div>
             <div className="right">

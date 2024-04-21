@@ -13,7 +13,7 @@ p {
   font-size: 5rem;
   font-weight: 500;
   line-height: 0.9;
-  margin-bottom: 0;
+  margin: 0.4rem 0;
 }
 
 .temp .unit {
