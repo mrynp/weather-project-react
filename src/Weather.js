@@ -4,15 +4,16 @@ import "./Weather.css";
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 import Temperature from "./Temperature";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
   const [location, setLocation] = useState(props.defaultCity);
   const [weather, setWeather] = useState({ ready: false });
 
   function displayWeather(response) {
-    console.log(response.data.name);
     setWeather({
       ready: true,
+      coord: response.data.coord,
       name: response.data.name,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
@@ -36,7 +37,7 @@ export default function Weather(props) {
   }
 
   function search() {
-    let key = "8cac06f7ab6c10287cd06a316ff84a57";
+    let key = "1ee4264117b73d2263eecd562f31ef5c";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${key}&units=metric`;
     axios.get(url).then(displayWeather);
   }
@@ -68,7 +69,7 @@ export default function Weather(props) {
             </div>
             <div className="right">
               <div className="icon">
-                <WeatherIcon code={weather.icon} />
+                <WeatherIcon code={weather.icon} size={90} />
                 {/* <img src={weather.icon} alt={weather.description} /> */}
               </div>
               <p className="details">
@@ -83,7 +84,8 @@ export default function Weather(props) {
               </p>
             </div>
           </div>
-          <div className="bottom"></div>
+
+          <WeatherForecast coord={weather.coord} />
         </div>
       </div>
     );

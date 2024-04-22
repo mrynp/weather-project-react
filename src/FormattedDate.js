@@ -24,9 +24,12 @@ export default function FormattedDate(props) {
   }
 
   let period = "";
-  if (hours >= 12) {
+  if (hours > 12) {
     period = "pm";
     hours = hours - 12;
+  }
+  if ((hours = 12)) {
+    period = "pm";
   } else {
     period = "am";
   }
