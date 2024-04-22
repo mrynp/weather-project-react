@@ -12,6 +12,7 @@ function App() {
           href="https://github.com/mrynp/weather-project-react"
           target="_blank"
           rel="noreferrer"
+          className="hover-underline-animation"
         >
           open-sourced on Github
         </a>

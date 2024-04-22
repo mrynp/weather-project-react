@@ -18,7 +18,6 @@ body {
   height: 100vh;
   position: relative;
   color: #fff;
-  padding-top: 3rem;
 }
 
 .app:before {
@@ -35,6 +34,34 @@ body {
 .app footer {
   text-align: center;
   position: relative;
-  bottom: -20%;
+  bottom: -35%;
   font-size: 0.8rem;
+}
+.app footer a {
+  color: #fff;
+  text-underline-offset: 0.2rem;
+  transform: 200ms ease;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: 0;
+  left: 0;
+  background-color: #77b2cf;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
